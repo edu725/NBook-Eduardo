@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Titulo da Página</title>
+{% endblock %}
+{% block content %}
+<div style="padding-top: 50px;">
+  <div class="text-center cor" style="padding-bottom: 20px;">
+    <h1 style="font-size: 60px;">
+      Produtos
+    </h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      {% include 'partials/_cards.html' %}
+    </div>
+  </div>
+</div>
+<br>
+<hr style="color: white;">
+<br>
+<hr style="color: white;">
+
+  
+{% endblock %}
