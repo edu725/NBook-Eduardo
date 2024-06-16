@@ -11,4 +11,7 @@ urlpatterns = [
     path("itens/atualizar/<int:id>", update, name="atualizar_item"),
     path("itens/visualizar/<int:id>", read, name="visualizar_item"),
     path("itens/deletar/<int:id>", delete, name="deletar_item"),
+    path('login/', login_view, name='login'),
+    path('register/', register_view, name='register'),
+    path('logout/', logout_view, name='logout'),
 ]

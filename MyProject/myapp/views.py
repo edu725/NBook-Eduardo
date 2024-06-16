@@ -59,4 +59,48 @@ def delete(request, id):
     messages.success(request, 'item foi deletada com sucesso!')
     return redirect('index')
 
+def like_clothing(request, clothing_id):
+    clothing = get_object_or_404(Clothing, id=clothing_id)
+    like, created = Like.objects.get_or_create(user=request.user, clothing=clothing)
+    if not created:
+        like.delete()
+    return redirect('detail_clothing', clothing_id=clothing_id)
 
+
+def comment_clothing(request, clothing_id):
+    clothing = get_object_or_404(Clothing, id=clothing_id)
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        Comment.objects.create(user=request.user, clothing=clothing, content=content)
+    return redirect('detail_clothing', clothing_id=clothing_id)
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            user_temp = User.objects.get(email= email)
+            user = authenticate(username=user_temp, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+    return redirect('index')
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cadastrado com sucesso!')
+            return redirect('login')
+        else:
+            messages.error(request, 'Erro ao cadastrar!')
+            
+            
+    return redirect('index')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')

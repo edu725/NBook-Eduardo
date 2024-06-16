@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ecommerci',
+        'NAME': 'book',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

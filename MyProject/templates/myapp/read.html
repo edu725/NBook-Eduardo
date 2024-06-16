@@ -5,16 +5,20 @@
 {% endblock %}
 {% block content %}
 <div class="container">
+  <br>
   {%if item.imagem%}
   <img src="{{item.imagem.url}}" alt="item.titulo" width="200px" height="200px">
   {%endif%}
-  <br>
+  <br> <hr>
   <strong>Nome:</strong>{{item.titulo}}
-  <br>
+  <br> <hr>
   <strong>Descrição:</strong>{{item.descricao}}
+  <br> <hr>
   <a href="{% url 'editar_item' item.id %}" class="btn btn-warning">Editar</a>
+  <br> <hr>
   <a href="{% url 'deletar_item' item.id %}" class="btn btn-danger">Deletar</a>
+  <hr>
 </div>  
-  {% include 'partials/_footer.html' %}
+
      
 {% endblock %}
